@@ -20,43 +20,43 @@
 
 # estrutura do projeto 
 
-project-root/
-│
-├── prisma/                # Diretório para os arquivos do Prisma
-│   ├── schema.prisma       # Esquema do banco de dados Prisma
-│   ├── migrations/         # Diretório contendo as migrações geradas pelo Prisma
-│   └── seeds/              # Scripts para popular o banco de dados com dados iniciais
-│
-├── src/                   # Diretório principal do código fonte da aplicação
-│   ├── modules/            # Cada módulo do sistema (ex: users, products, etc.)
-│   │   ├── user/           # Módulo para User (exemplo)
-│   │   │   ├── user.controller.ts  # Controlador do usuário
-│   │   │   ├── user.service.ts     # Lógica de negócios do usuário
-│   │   │   ├── user.model.ts       # Definição de tipos e/ou classes de usuário
-│   │   │   └── user.routes.ts      # Rotas relacionadas a usuários
-│   │   └── ...                    # Outros módulos
-│   │
-│   ├── common/             # Utilitários e código compartilhado
-│   │   ├── middlewares/    # Middlewares globais
-│   │   ├── helpers/        # Funções utilitárias
-│   │   └── constants.ts    # Constantes globais
-│   │
-│   ├── config/             # Configurações de ambiente
-│   │   ├── db.ts           # Configuração do Prisma ou banco de dados
-│   │   └── env.ts          # Configuração de variáveis de ambiente
-│   │
-│   ├── interfaces/         # Definição de interfaces TypeScript
-│   │   └── user.interface.ts # Interfaces para o módulo de usuários (exemplo)
-│   │
-│   ├── server.ts           # Arquivo principal que inicia o servidor
-│   └── app.ts              # Configuração e inicialização do app (ex: Express)
-│
-├── tests/                 # Testes do projeto
-│   ├── unit/              # Testes unitários
-│   └── integration/       # Testes de integração
-│
-├── .env                   # Arquivo de variáveis de ambiente
-├── .gitignore             # Arquivos e diretórios a serem ignorados pelo Git
-├── package.json           # Dependências e scripts do Node.js
-├── tsconfig.json          # Configurações do TypeScript
-└── README.md              # Documentação do projeto
+  project-root/
+  │
+  ├── prisma/            # Diretório para os arquivos do Prisma
+  │   ├── schema.prisma  # Esquema do banco de dados Prisma
+  │   ├── migrations/    # Diretório contendo as migrações geradas pelo Prisma
+  │   └── seeds/              # Scripts para popular o banco de dados com dados iniciais
+  │
+  ├── src/                   # Diretório principal do código fonte da aplicação
+  │   ├── modules/            # Cada módulo do sistema (ex: users, products, etc.)
+  │   │   ├── user/           # Módulo para User (exemplo)
+  │   │   │   ├── user.controller.ts  # Controlador do usuário
+  │   │   │   ├── user.service.ts     # Lógica de negócios do usuário
+  │   │   │   ├── user.model.ts       # Definição de tipos e/ou classes de usuário
+  │   │   │   └── user.routes.ts      # Rotas relacionadas a usuários
+  │   │   └── ...                    # Outros módulos
+  │   │
+  │   ├── common/             # Utilitários e código compartilhado
+  │   │   ├── middlewares/    # Middlewares globais
+  │   │   ├── helpers/        # Funções utilitárias
+  │   │   └── constants.ts    # Constantes globais
+  │   │
+  │   ├── config/             # Configurações de ambiente
+  │   │   ├── db.ts           # Configuração do Prisma ou banco de dados
+  │   │   └── env.ts          # Configuração de variáveis de ambiente
+  │   │
+  │   ├── interfaces/         # Definição de interfaces TypeScript
+  │   │   └── user.interface.ts # Interfaces para o módulo de usuários (exemplo)
+  │   │
+  │   ├── server.ts           # Arquivo principal que inicia o servidor
+  │   └── app.ts              # Configuração e inicialização do app (ex: Express)
+  │
+  ├── tests/                 # Testes do projeto
+  │   ├── unit/              # Testes unitários
+  │   └── integration/       # Testes de integração
+  │
+  ├── .env                   # Arquivo de variáveis de ambiente
+  ├── .gitignore             # Arquivos e diretórios a serem ignorados pelo Git
+  ├── package.json           # Dependências e scripts do Node.js
+  ├── tsconfig.json          # Configurações do TypeScript
+  └── README.md              # Documentação do projeto
