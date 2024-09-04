@@ -12,18 +12,24 @@ datasource db {
 
 model User {
   id    Int     @id @default(autoincrement())
+  name  String
   email String  @unique
-  name  String?
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  // relationship
   Meal Meal[]
 }
 
 model Meal {
   id    Int     @id @default(autoincrement())
-  name  String?
+  name  String
   description String
   time_curred DateTime
   and_diet Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 
   // relationship
   author User @relation(fields: [user_id], references: [id])
