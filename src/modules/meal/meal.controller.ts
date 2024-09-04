@@ -6,7 +6,11 @@ import { Meal } from "@prisma/client";
 export class MealController {
   static async createMeal(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const meal = await MealService.createMeal(req.body as Meal)
+      const data = req.body as Meal
+
+      data.user_id = req.user.userId
+
+      const meal = await MealService.createMeal(data)
 
       reply.code(201).send(meal);
     } catch (error) {
@@ -16,11 +20,13 @@ export class MealController {
 
   static async findMealByID(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const user = await MealService.findMealByID(req.user.userId);
-      if (!user) {
+      const {id} = req.params as { id: number}
+
+      const meal = await MealService.findMealByID(Number(id));
+      if (!meal) {
         reply.code(404).send({ error: 'Meal not found' });
       } else {
-        reply.code(200).send(user);
+        reply.code(200).send(meal);
       }
     } catch (error) {
       reply.code(500).send({ error: 'Failed to fetch Meal' });
@@ -42,7 +48,9 @@ export class MealController {
 
   static async updateMeal(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const user = await MealService.updateMeal(req.user.userId, req.body as Meal);
+      const {id} = req.params as { id: number}
+
+      const user = await MealService.updateMeal(Number(id), req.body as Meal);
       reply.code(200).send(user);
     } catch (error) {
       reply.code(500).send({ error: 'Failed to update meal' });
