@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Org {
   id    Int     @id @default(autoincrement())
   name  String
   email String  @unique
@@ -19,10 +19,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   // relationship
-  Meal Meal[]
+  Pet Pet[]
 }
 
-model Meal {
+model Pet {
   id    Int     @id @default(autoincrement())
   name  String
   description String
@@ -32,6 +32,6 @@ model Meal {
   updatedAt DateTime @default(now())
 
   // relationship
-  author User @relation(fields: [user_id], references: [id])
-  user_id Int
+  author Org @relation(fields: [org_id], references: [id])
+  org_id Int
 }
