@@ -16,11 +16,11 @@ export class PetController {
     }
   }
 
-  static async findMealByID(req: FastifyRequest, reply: FastifyReply) {
+  static async findPetByID(req: FastifyRequest, reply: FastifyReply) {
     try {
       const {id} = req.params as { id: number}
 
-      const meal = await PetService.findMealByID(Number(id));
+      const meal = await PetService.findPetByID(Number(id));
       if (!meal) {
         reply.code(404).send({ error: 'Meal not found' });
       } else {
@@ -28,6 +28,21 @@ export class PetController {
       }
     } catch (error) {
       reply.code(500).send({ error: 'Failed to fetch Meal' });
+    }
+  }
+
+  static async findPetByCity(req: FastifyRequest, reply: FastifyReply) {
+    try {
+      const {city} = req.params as { city: string}
+      console.log(city)
+      const pets = await PetService.findPetByCity(city);
+      if (!pets) {
+        reply.code(404).send({ error: 'pets not found' });
+      } else {
+        reply.code(200).send(pets);
+      }
+    } catch (error) {
+      reply.code(500).send({ error: 'Failed to fetch pets' });
     }
   }
 

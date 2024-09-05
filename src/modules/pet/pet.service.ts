@@ -16,10 +16,16 @@ export class PetService {
     return pet
   }
 
-  static async findMealByID(id: number): Promise<Pet | null> {
-    const meal = await prisma.pet.findUnique({ where: { id }});
+  static async findPetByID(id: number): Promise<Pet | null> {
+    const pet = await prisma.pet.findUnique({ where: { id }});
 
-    return meal
+    return pet
+  }
+
+  static async findPetByCity(city: string): Promise<Pet[] | null> {
+    const pet = await prisma.pet.findMany({ where: { city }});
+
+    return pet
   }
 
   static async findAllMeals(org_id: number): Promise<Pet[] | null> {
