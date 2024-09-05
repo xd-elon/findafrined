@@ -15,9 +15,12 @@ model Org {
   name  String
   email String  @unique
   password String
+
+  andress String
+  whats String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   // relationship
   Pet Pet[]
 }
@@ -26,11 +29,10 @@ model Pet {
   id    Int     @id @default(autoincrement())
   name  String
   description String
-  time_curred DateTime
-  and_diet Boolean
+  city String
+  
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-
+  updatedAt DateTime @updatedAt
   // relationship
   author Org @relation(fields: [org_id], references: [id])
   org_id Int

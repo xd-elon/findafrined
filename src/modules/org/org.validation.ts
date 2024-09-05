@@ -1,9 +1,9 @@
 // src/modules/user/user.validation.ts
 
-import { User } from '@prisma/client';
+import { Org } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
-export function validateCreateUser(data: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): string[] {
+export function validateCreateUser(data: Omit<Org, 'id' | 'createdAt' | 'updatedAt'>): string[] {
   const errors: string[] = [];
 
   if (!data.email) {

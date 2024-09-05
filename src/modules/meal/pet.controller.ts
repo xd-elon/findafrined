@@ -1,18 +1,16 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { MealService } from "./meal.service";
-import { Meal } from "@prisma/client";
+import { PetService } from "./pet.service";
+import { Pet } from "@prisma/client";
 
 
-export class MealController {
-  static async createMeal(req: FastifyRequest, reply: FastifyReply) {
+export class PetController {
+  static async createPet(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const data = req.body as Meal
 
-      data.user_id = req.user.userId
 
-      const meal = await MealService.createMeal(data)
-
-      reply.code(201).send(meal);
+      const pet = await PetService.createPet({...req.body as Pet, org_id: req.org.org_id})
+      
+      reply.code(201).send(pet);
     } catch (error) {
       reply.code(500).send(error);
     }
@@ -22,7 +20,7 @@ export class MealController {
     try {
       const {id} = req.params as { id: number}
 
-      const meal = await MealService.findMealByID(Number(id));
+      const meal = await PetService.findMealByID(Number(id));
       if (!meal) {
         reply.code(404).send({ error: 'Meal not found' });
       } else {
@@ -35,7 +33,7 @@ export class MealController {
 
   static async findAllMeals(req: FastifyRequest, reply: FastifyReply) {
     try {
-      const user = await MealService.findAllMeals(req.user.userId);
+      const user = await PetService.findAllMeals(req.org.org_id);
       if (!user) {
         reply.code(404).send({ error: 'Meal not found' });
       } else {
@@ -50,7 +48,7 @@ export class MealController {
     try {
       const {id} = req.params as { id: number}
 
-      const user = await MealService.updateMeal(Number(id), req.body as Meal);
+      const user = await PetService.updateMeal(Number(id), req.body as Pet);
       reply.code(200).send(user);
     } catch (error) {
       reply.code(500).send({ error: 'Failed to update meal' });
@@ -61,19 +59,11 @@ export class MealController {
     try {
       const {id} = req.params as { id: number}
 
-      await MealService.deleteMeal(id);
+      await PetService.deleteMeal(id);
       reply.code(204).send();
     } catch (error) {
       reply.code(500).send({ error: 'Failed to delete meal' });
     }
   }
 
-  static async metricsMeal(req: FastifyRequest, reply: FastifyReply) {
-    try {
-      const result = await MealService.metricsMeal(req.user.userId);
-      reply.code(201).send(result);
-    } catch (error) {
-      reply.code(500).send({ error: 'Failed to find metrics meal' });
-    }
-  }
 }

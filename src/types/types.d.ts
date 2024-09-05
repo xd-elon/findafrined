@@ -2,6 +2,6 @@ import 'fastify';
 
 declare module 'fastify' {
   interface FastifyRequest {
-    user: { userId: number };  // ou qualquer outra estrutura que o JWT tenha
+    org: { org_id: number };  // ou qualquer outra estrutura que o JWT tenha
   }
 }
